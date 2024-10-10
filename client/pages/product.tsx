@@ -1,3 +1,10 @@
+import ProductDetail from '../components/Product/Product';
 export default function Product() {
-  return <div>Product page</div>;
+  return (
+    <main>
+      <div>
+        <ProductDetail />
+      </div>
+    </main>
+  );
 }
