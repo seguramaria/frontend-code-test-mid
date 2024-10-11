@@ -12,6 +12,8 @@ import {
   SectionPrimary,
   SectionSecondary,
   ProductInfo,
+  ProductSpecification,
+  ProductColumn,
 } from "./Product.styles";
 
 export default function Product() {
@@ -64,22 +66,22 @@ export default function Product() {
         </SectionSecondary>
         <SectionPrimary>
           <ProductSubtitle>Specifications</ProductSubtitle>
-          <div style={{ display: "flex" }}>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+          <ProductSpecification>
+            <ProductColumn>
               <ProductBody>Brand</ProductBody>
               <ProductBody>Item weight (g)</ProductBody>
               <ProductBody>Dimensions (cm)</ProductBody>
               <ProductBody>Item Model Number</ProductBody>
               <ProductBody>Colour</ProductBody>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            </ProductColumn>
+            <ProductColumn>
               <ProductBody>{product.brand}</ProductBody>
               <ProductBody>{product.weight}</ProductBody>
               <ProductBody>{product.height}</ProductBody>
               <ProductBody>{product.model_code}</ProductBody>
               <ProductBody>{product.colour}</ProductBody>
-            </div>
-          </div>
+            </ProductColumn>
+          </ProductSpecification>
         </SectionPrimary>
       </div>
     </PageContainer>

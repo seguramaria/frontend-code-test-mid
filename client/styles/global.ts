@@ -1,14 +1,14 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 /* Octopus Energy brand colours used in the design */
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --hemocyanin: #180048; //Azul muy oscuro //backgroundPrimaryColor
-    --ice: #f0ffff; // Azul muy clarito primaryColor
-    --plum: #600e6b; //Morado oscuro borders, secondaryButtons
-    --purpleHaze: #a49fc8; // Lila claro secondaryColor
-    --siphon: #100030; //Negro backgroundSecondaryColor
-    --sohoLights: #f050f8; //Rosa buttons
+    --hemocyanin: #180048; 
+    --ice: #f0ffff; 
+    --plum: #600e6b; 
+    --purpleHaze: #a49fc8; 
+    --siphon: #100030; 
+    --sohoLights: #f050f8; 
   }
 
   html, body {

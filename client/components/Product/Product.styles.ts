@@ -11,6 +11,13 @@ export const PageContainer = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpointstablet}) {
+    padding: 32px;
+  }
+  @media (min-width: ${({ theme }) => theme.desktop}) {
+    padding: 40px;
+  }
 `;
 
 export const SectionPrimary = styled.section`
@@ -77,4 +84,23 @@ export const ProductQuantity = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const ProductColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ProductSpecification = styled.div`
+  display: flex;
+  width: 100%;
+  ${ProductColumn}:first-child {
+    margin-right: 36px;
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobileXl}) {
+    width: 50%;
+    ${ProductColumn}:first-child {
+      margin-right: 50px;
+    }
+  }
 `;
