@@ -6,8 +6,12 @@ import {
   ProductQuantity,
   Quantity,
   QuantitySection,
-  Section,
-  Subtitle,
+  ProductBody,
+  ProductSubtitle,
+  ProductTitle,
+  SectionPrimary,
+  SectionSecondary,
+  ProductInfo,
 } from "./Product.styles";
 
 export default function Product() {
@@ -31,14 +35,14 @@ export default function Product() {
 
   return (
     <PageContainer>
-      <Section>
+      <SectionPrimary>
         <ImageContainer>
           <img src={product.img_url} />
         </ImageContainer>
-        <h1>{product.name}</h1>
-        <Subtitle>
+        <ProductTitle>{product.name}</ProductTitle>
+        <ProductInfo>
           {product.power} // Packet of {product.quantity}
-        </Subtitle>
+        </ProductInfo>
         <AddToCartSection>
           <QuantitySection>
             <span>{product.price}</span>
@@ -52,31 +56,31 @@ export default function Product() {
           </QuantitySection>
           <button>Add to cart</button>
         </AddToCartSection>
-      </Section>
+      </SectionPrimary>
       <div>
-        <Section>
-          <h4>Description</h4>
-          <p>{product.description}</p>
-        </Section>
-        <Section>
-          <h4>Specifications</h4>
+        <SectionSecondary>
+          <ProductSubtitle>Description</ProductSubtitle>
+          <ProductBody>{product.description}</ProductBody>
+        </SectionSecondary>
+        <SectionPrimary>
+          <ProductSubtitle>Specifications</ProductSubtitle>
           <div style={{ display: "flex" }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>Brand</div>
-              <div>Item weight (g)</div>fonts
-              <div>Dimensions (cm)</div>
-              <div>Item Model Number</div>
-              <div>Colour</div>
+              <ProductBody>Brand</ProductBody>
+              <ProductBody>Item weight (g)</ProductBody>
+              <ProductBody>Dimensions (cm)</ProductBody>
+              <ProductBody>Item Model Number</ProductBody>
+              <ProductBody>Colour</ProductBody>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>{product.brand}</div>
-              <div>{product.weight}</div>
-              <div>{product.height}</div>
-              <div>{product.model_code}</div>
-              <div>{product.colour}</div>
+              <ProductBody>{product.brand}</ProductBody>
+              <ProductBody>{product.weight}</ProductBody>
+              <ProductBody>{product.height}</ProductBody>
+              <ProductBody>{product.model_code}</ProductBody>
+              <ProductBody>{product.colour}</ProductBody>
             </div>
           </div>
-        </Section>
+        </SectionPrimary>
       </div>
     </PageContainer>
   );

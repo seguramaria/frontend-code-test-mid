@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { containerMixin } from "@/styles/mixins";
+import {
+  bodyMixin,
+  containerMixin,
+  subtitleMixin,
+  titleMixin,
+} from "@/styles/mixins";
 
 export const PageContainer = styled.section`
   display: flex;
@@ -8,18 +13,19 @@ export const PageContainer = styled.section`
   justify-content: center;
 `;
 
-export const Section = styled.section`
+export const SectionPrimary = styled.section`
+  ${({ theme }) => containerMixin(theme.colors.backgroundPrimary)}
+`;
 
-  ${containerMixin}
-  h1 {
-    font-size: 1.5rem; /
-  }
+export const SectionSecondary = styled.section`
+  ${({ theme }) => containerMixin(theme.colors.backgroundSecondary)}
 `;
 
 export const ImageContainer = styled.div`
   width: 100%;
   max-width: 300px;
   align-self: center;
+
   img {
     width: 100%;
     object-fit: cover;
@@ -27,10 +33,23 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const Subtitle = styled.p`
-  font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.secondaryText};
-  margin: 8px 0;
+export const ProductTitle = styled.h1`
+  ${titleMixin}
+  margin: 0;
+  letter-spacing: 1.5px;
+`;
+
+export const ProductSubtitle = styled.h2`
+  margin: 0;
+  ${subtitleMixin}
+`;
+
+export const ProductBody = styled.p`
+  ${bodyMixin}
+`;
+
+export const ProductInfo = styled(ProductBody)`
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 export const AddToCartSection = styled.div`
@@ -44,6 +63,7 @@ export const QuantitySection = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
 export const Quantity = styled.div`
   display: flex;
   width: 50%;
