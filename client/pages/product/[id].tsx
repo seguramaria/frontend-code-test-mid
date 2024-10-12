@@ -36,7 +36,6 @@ export default function Product() {
   useEffect(() => {
     const fetchProduct = async () => {
       if (!id) return;
-
       try {
         const { data } = await createApolloClient.query({
           query: GET_PRODUCT,
@@ -51,7 +50,6 @@ export default function Product() {
         setLoading(false);
       }
     };
-
     fetchProduct();
   }, [id]);
 
