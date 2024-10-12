@@ -4,8 +4,7 @@ import {
   ImageContainer,
   PageContainer,
   ProductQuantity,
-  Quantity,
-  QuantitySection,
+  QuantityCaption,
   ProductBody,
   ProductSubtitle,
   ProductTitle,
@@ -14,6 +13,11 @@ import {
   ProductInfo,
   ProductSpecification,
   ProductColumn,
+  QuantityButton,
+  AddToCartButton,
+  PriceQuantitySection,
+  QuantityControl,
+  QuantityStepper,
 } from "./Product.styles";
 
 export default function Product() {
@@ -46,17 +50,20 @@ export default function Product() {
           {product.power} // Packet of {product.quantity}
         </ProductInfo>
         <AddToCartSection>
-          <QuantitySection>
-            <span>{product.price}</span>
-            <Quantity>
-              <button>-</button>
-              <ProductQuantity>
-                <span>Qty</span> <span>1</span>
-              </ProductQuantity>
-              <button>+</button>
-            </Quantity>
-          </QuantitySection>
-          <button>Add to cart</button>
+          <PriceQuantitySection>
+            <span>£{product.price}</span>
+            <QuantityControl>
+              <QuantityCaption>Qty</QuantityCaption>
+              <QuantityStepper>
+                <QuantityButton>-</QuantityButton>
+                <ProductQuantity>
+                  <span>1</span>
+                </ProductQuantity>
+                <QuantityButton>+</QuantityButton>
+              </QuantityStepper>
+            </QuantityControl>
+          </PriceQuantitySection>
+          <AddToCartButton>Add to cart</AddToCartButton>
         </AddToCartSection>
       </SectionPrimary>
       <div>

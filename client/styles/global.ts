@@ -10,6 +10,12 @@ export const GlobalStyle = createGlobalStyle`
     --siphon: #100030; 
     --sohoLights: #f050f8; 
   }
+    
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
   html, body {
     padding: 0;
@@ -29,5 +35,5 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     height: 100vh;
     margin: 0 auto;
-  }
+  }  
 `;

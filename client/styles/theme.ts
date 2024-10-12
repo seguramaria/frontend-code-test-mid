@@ -1,11 +1,20 @@
 export const theme = {
-  colors: {
-    textPrimary: "#f0ffff",
-    textSecondary: "#a49fc8",
-    backgroundPrimary: "#100030",
-    backgroundSecondary: "#180048",
-    accentPrimary: "#f050f8",
-    accentSecondary: "#600e6b",
+  palette: {
+    text: {
+      primary: "#f0ffff",
+      secondary: "#100030",
+      disabled: "#a49fc8",
+      hover: "#100030",
+      focus: "#100030",
+    },
+    background: {
+      primary: "#100030",
+      secondary: "#180048",
+      accent: "#f050f8",
+      disabled: "#600e6b",
+      hover: "#fa98ff",
+      focus: "#f0ffff",
+    },
   },
   typography: {
     title: {
@@ -24,8 +33,13 @@ export const theme = {
       lineHeight: "1.5",
     },
     caption: {
+      fontWeight: "300",
+      fontSize: "0.5rem",
+      lineHeight: "1.5",
+    },
+    action: {
       fontWeight: "500",
-      fontSize: "0.75rem",
+      fontSize: "1rem",
       lineHeight: "1.5",
     },
   },
