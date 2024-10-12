@@ -19,38 +19,13 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./Product.styles";
-import { gql, useQuery } from "@apollo/client";
 
-const GET_PRODUCT = gql`
-  query {
-    Product(id: 1) {
-      id
-      name
-      power
-      description
-      price
-      quantity
-      brand
-      weight
-      height
-      width
-      length
-      model_code
-      colour
-      img_url
-    }
-  }
-`;
-export default function Product({ productId = 1 }: { productId: number }) {
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: productId },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const product = data.Product;
-
+export default function Product({
+  product,
+}: {
+  product: ProductInterface | null;
+}) {
+  if (!product) return <p>Product not found</p>;
   return (
     <PageContainer>
       <SectionPrimary>

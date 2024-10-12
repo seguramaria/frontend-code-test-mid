@@ -7,6 +7,7 @@
     "paths": {
       "@/pages/*": ["pages/*"],
       "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
       "@/test/*": ["test/*"]
