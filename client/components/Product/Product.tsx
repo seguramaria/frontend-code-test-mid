@@ -19,25 +19,37 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./Product.styles";
+import { gql, useQuery } from "@apollo/client";
 
-export default function Product() {
-  const product: ProductInterface = {
-    id: 1,
-    name: "Energy saving light bulb",
-    power: "25W",
-    description:
-      "Available in 7 watts, 9 watts, 11 watts Spiral Light bulb in B22, bulb switches on instantly, no wait around warm start and flicker free features make for a great all purpose bulb",
-    price: 1299,
-    quantity: 4,
-    brand: "Philips",
-    weight: 77,
-    height: 12.6,
-    width: 6.2,
-    length: 6.2,
-    model_code: "E27 ES",
-    colour: "Cool daylight",
-    img_url: "https://i.ibb.co/2nzwxnQ/bulb.png",
-  };
+const GET_PRODUCT = gql`
+  query {
+    Product(id: 1) {
+      id
+      name
+      power
+      description
+      price
+      quantity
+      brand
+      weight
+      height
+      width
+      length
+      model_code
+      colour
+      img_url
+    }
+  }
+`;
+export default function Product({ productId = 1 }: { productId: number }) {
+  const { loading, error, data } = useQuery(GET_PRODUCT, {
+    variables: { id: productId },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const product = data.Product;
 
   return (
     <PageContainer>

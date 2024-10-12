@@ -3,7 +3,7 @@ export default function Product() {
   return (
     <main>
       <div>
-        <ProductDetail />
+        <ProductDetail productId={1} />
       </div>
     </main>
   );
