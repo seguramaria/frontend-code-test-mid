@@ -63,7 +63,11 @@ export const buttonMixin = css`
   &:disabled {
     background-color: ${({ theme }) => theme.palette.background.disabled};
     color: ${({ theme }) => theme.palette.text.disabled};
-    cursor: not-allowed;
+    cursor: default;
+    &:hover {
+      background-color: ${({ theme }) => theme.palette.background.disabled};
+      color: ${({ theme }) => theme.palette.text.disabled};
+    }
   }
 
   &:hover {

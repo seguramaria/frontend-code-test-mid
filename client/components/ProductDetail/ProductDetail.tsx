@@ -1,4 +1,4 @@
-import { Product as ProductInterface } from "@/types/index";
+import { Product } from "@/types/index";
 import {
   AddToCartSection,
   ImageContainer,
@@ -19,61 +19,63 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./ProductDetail.styles";
+import { useState } from "react";
 
-export default function Product({
+export default function ProductDetail({
   product,
 }: {
-  product: ProductInterface | null;
+  product: Product | null;
 }) {
+  const [cart, setCart] = useState<Product[]>([]);
   if (!product) return <p>Product not found</p>;
-  const {
-    id,
-    name,
-    power,
-    description,
-    price,
-    quantity,
-    brand,
-    weight,
-    height,
-    width,
-    length,
-    model_code,
-    colour,
-    img_url,
-  } = product;
 
+  const addToCart = (product: Product) => {
+    //TODO: Create hook
+    setCart((prev: Product[]) => [...prev, { ...product, cartQuantity: 1 }]);
+  };
+
+  const getProductQuantity = (productId: number) => {
+    const productInCart = cart.find((item: Product) => item.id === productId);
+    return productInCart ? productInCart.cartQuantity : 0;
+  };
+  console.log(cart); // TODO: Create Cart component
   return (
     <PageContainer>
       <SectionPrimary>
         <ImageContainer>
-          <img src={img_url} />
+          <img src={product.img_url} />
         </ImageContainer>
-        <ProductTitle>{name}</ProductTitle>
+        <ProductTitle>{product.name}</ProductTitle>
         <ProductInfo>
-          {power} // Packet of {quantity}
+          {product.power} // Packet of {product.quantity}
         </ProductInfo>
         <AddToCartSection>
           <PriceQuantitySection>
-            <span>£{price}</span>
+            <span>£{product.price}</span>
             <QuantityControl>
               <QuantityCaption>Qty</QuantityCaption>
               <QuantityStepper>
                 <QuantityButton>-</QuantityButton>
                 <ProductQuantity>
-                  <span>1</span>
+                  <span>{getProductQuantity(product.id)}</span>
                 </ProductQuantity>
                 <QuantityButton>+</QuantityButton>
               </QuantityStepper>
             </QuantityControl>
           </PriceQuantitySection>
-          <AddToCartButton>Add to cart</AddToCartButton>
+          {getProductQuantity(product.id) > 0 ? (
+            <AddToCartButton disabled>Product added</AddToCartButton>
+          ) : (
+            <AddToCartButton onClick={() => addToCart(product)}>
+              Add to cart
+            </AddToCartButton>
+          )}
         </AddToCartSection>
       </SectionPrimary>
       <div>
         <SectionSecondary>
           <ProductSubtitle>Description</ProductSubtitle>
-          <ProductBody>{description}</ProductBody>
+          <ProductBody>{product.description}</ProductBody>
         </SectionSecondary>
         <SectionPrimary>
           <ProductSubtitle>Specifications</ProductSubtitle>
@@ -86,13 +88,13 @@ export default function Product({
               <ProductBody>Colour</ProductBody>
             </ProductColumn>
             <ProductColumn>
-              <ProductBody>{brand}</ProductBody>
-              <ProductBody>{weight}</ProductBody>
+              <ProductBody>{product.brand}</ProductBody>
+              <ProductBody>{product.weight}</ProductBody>
               <ProductBody>
-                {height} x {width} x{length}
+                {product.height} x {product.width} x{product.length}
               </ProductBody>
-              <ProductBody>{model_code}</ProductBody>
-              <ProductBody>{colour}</ProductBody>
+              <ProductBody>{product.model_code}</ProductBody>
+              <ProductBody>{product.colour}</ProductBody>
             </ProductColumn>
           </ProductSpecification>
         </SectionPrimary>

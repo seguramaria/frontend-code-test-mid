@@ -1,4 +1,4 @@
-export interface Product {
+export type Product = {
   id: number;
   name: string;
   power: string;
@@ -13,4 +13,5 @@ export interface Product {
   model_code: string;
   colour: string;
   img_url: string;
-}
+  cartQuantity?: number;
+};
