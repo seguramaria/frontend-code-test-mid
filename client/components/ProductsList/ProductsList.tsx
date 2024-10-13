@@ -20,7 +20,7 @@ import { Product } from "@/types/index";
 import { useCart } from "hooks/useCart";
 
 export default function ProductsList({ products }: { products: Product[] }) {
-  const { getProductQuantity, addToCart } = useCart();
+  const { getProductQuantity, addToCart, increaseQuantity } = useCart();
 
   return (
     <List>
@@ -45,7 +45,15 @@ export default function ProductsList({ products }: { products: Product[] }) {
                     <ProductQuantity>
                       <span>{getProductQuantity(product.id)}</span>
                     </ProductQuantity>
-                    <QuantityButton>+</QuantityButton>
+                    <QuantityButton
+                      onClick={(e) => {
+                        increaseQuantity(product.id);
+                        e.stopPropagation();
+                      }}
+                      disabled={getProductQuantity(product.id) === 0}
+                    >
+                      +
+                    </QuantityButton>
                   </QuantityStepper>
                 </QuantityControl>
               </AddToCartSection>

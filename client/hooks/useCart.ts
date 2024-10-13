@@ -13,10 +13,21 @@ export const useCart = () => {
     return productInCart ? productInCart?.cartQuantity : 0;
   };
 
+  const increaseQuantity = (id: number) => {
+    const updatedCart = cart.map((item: Product) => {
+      if (item.id === id && item.cartQuantity) {
+        return { ...item, cartQuantity: item.cartQuantity + 1 };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
+
   console.log(cart); //TODO Create cart
   return {
     cart,
     addToCart,
     getProductQuantity,
+    increaseQuantity,
   };
 };
