@@ -10,7 +10,8 @@
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
-      "@/test/*": ["test/*"]
+      "@/test/*": ["test/*"],
+      "@/hooks/*": ["hooks/*"]
     },
     "skipLibCheck": true,
     "strict": true,

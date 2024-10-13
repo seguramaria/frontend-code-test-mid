@@ -19,7 +19,8 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./ProductDetail.styles";
-import { useCart } from "hooks/useCart";
+import { useContext } from "react";
+import { CartContext } from "@/pages/_app";
 
 export default function ProductDetail({
   product,
@@ -27,7 +28,9 @@ export default function ProductDetail({
   product: Product | null;
 }) {
   if (!product) return <p>Product not found</p>;
-  const { getProductQuantity, addToCart, increaseQuantity } = useCart();
+
+  const { getProductQuantity, addToCart, increaseQuantity } =
+    useContext(CartContext);
   const cartQuantity = getProductQuantity(product.id);
 
   return (

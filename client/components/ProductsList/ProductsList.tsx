@@ -17,11 +17,13 @@ import {
   QuantityStepper,
 } from "../ProductDetail/ProductDetail.styles";
 import { Product } from "@/types/index";
-import { useCart } from "hooks/useCart";
+import { useContext } from "react";
+import { CartContext } from "@/pages/_app";
 
 export default function ProductsList({ products }: { products: Product[] }) {
-  const { getProductQuantity, addToCart, increaseQuantity } = useCart();
-
+  const { getProductQuantity, addToCart, increaseQuantity } =
+    useContext(CartContext);
+    
   return (
     <List>
       {products.map((product) => (
