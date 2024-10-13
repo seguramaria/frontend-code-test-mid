@@ -19,26 +19,16 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./ProductDetail.styles";
-import { useState } from "react";
+import { useCart } from "hooks/useCart";
 
 export default function ProductDetail({
   product,
 }: {
   product: Product | null;
 }) {
-  const [cart, setCart] = useState<Product[]>([]);
   if (!product) return <p>Product not found</p>;
-
-  const addToCart = (product: Product) => {
-    //TODO: Create hook
-    setCart((prev: Product[]) => [...prev, { ...product, cartQuantity: 1 }]);
-  };
-
-  const getProductQuantity = (productId: number) => {
-    const productInCart = cart.find((item: Product) => item.id === productId);
-    return productInCart ? productInCart.cartQuantity : 0;
-  };
-  console.log(cart); // TODO: Create Cart component
+  const { getProductQuantity, addToCart } = useCart();
+  const cartQuantity = getProductQuantity(product.id);
   return (
     <PageContainer>
       <SectionPrimary>
@@ -57,13 +47,13 @@ export default function ProductDetail({
               <QuantityStepper>
                 <QuantityButton>-</QuantityButton>
                 <ProductQuantity>
-                  <span>{getProductQuantity(product.id)}</span>
+                  <span>{cartQuantity}</span>
                 </ProductQuantity>
                 <QuantityButton>+</QuantityButton>
               </QuantityStepper>
             </QuantityControl>
           </PriceQuantitySection>
-          {getProductQuantity(product.id) > 0 ? (
+          {cartQuantity > 0 ? (
             <AddToCartButton disabled>Product added</AddToCartButton>
           ) : (
             <AddToCartButton onClick={() => addToCart(product)}>

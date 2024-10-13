@@ -1,4 +1,3 @@
-import { Product, Product as ProductInterface } from "@/types/index";
 import Link from "next/link";
 import {
   AddToCartButton,
@@ -9,7 +8,6 @@ import {
   ProductInfo,
   ProductTitle,
 } from "./ProductsList.styles";
-import { useState } from "react";
 import {
   AddToCartSection,
   ProductQuantity,
@@ -18,25 +16,12 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "../ProductDetail/ProductDetail.styles";
+import { Product } from "@/types/index";
+import { useCart } from "hooks/useCart";
 
-export default function ProductsList({
-  products,
-}: {
-  products: ProductInterface[];
-}) {
-  const [cart, setCart] = useState<Product[]>([]);
-  if (!products) return <p>Product not found</p>;
+export default function ProductsList({ products }: { products: Product[] }) {
+  const { getProductQuantity, addToCart } = useCart();
 
-  const addToCart = (product: Product) => {
-    setCart((prev: Product[]) => [...prev, { ...product, cartQuantity: 1 }]);
-  };
-
-  console.log(cart); //TODO Create cart
-
-  const getProductQuantity = (productId: number) => {
-    const productInCart = cart.find((item: Product) => item.id === productId);
-    return productInCart ? productInCart.cartQuantity : 0;
-  };
   return (
     <List>
       {products.map((product) => (
