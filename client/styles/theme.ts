@@ -13,6 +13,9 @@ export const theme = {
       accent: "#f050f8",
       disabled: "#600e6b",
       hover: "#fa98ff",
+    },
+    border: {
+      primary: "#5840ff",
       focus: "#f0ffff",
     },
   },

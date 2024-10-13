@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import createApolloClient from "@/lib/apollo-client";
 import { Product as ProductInterface } from "@/types/index";
+import ProductsList from "@/components/ProductsList/ProductsList";
 
 const GET_ALL_PRODUCTS = gql`
   query {
@@ -9,6 +10,7 @@ const GET_ALL_PRODUCTS = gql`
       id
       name
       power
+      quantity
       price
     }
   }
@@ -50,16 +52,8 @@ export default function Home() {
             alt="Octopus Energy Logo"
           />
         </figure>
-        <h2>Available Products</h2>
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              <h3>{product.name}</h3>
-              <p>Power: {product.power}</p>
-              <p>Price: ${product.price}</p>
-            </li>
-          ))}
-        </ul>
+        <h2>Products</h2>
+        <ProductsList products={products} />
       </div>
     </main>
   );

@@ -23,6 +23,8 @@ export const titleMixin = css`
   font-size: ${({ theme }) => theme.typography.title.fontSize};
   line-height: ${({ theme }) => theme.typography.title.lineHeight};
   color: ${({ theme }) => theme.palette.text.primary};
+  letter-spacing: 1.5px;
+  margin: 0;
 `;
 
 export const subtitleMixin = css`
@@ -70,6 +72,32 @@ export const buttonMixin = css`
   }
 
   &:focus {
-    outline: 2px solid ${({ theme }) => theme.palette.background.focus};
+    outline: 2px solid ${({ theme }) => theme.palette.border.focus};
   }
+`;
+
+export const porductCardMixin = () => css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: ${({ theme }) => theme.palette.background.secondary};
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  width: 14rem;
+  border: 1px solid ${({ theme }) => theme.palette.border.primary};
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 8px 16px ${({ theme }) => theme.palette.border.primary};
+  }
+`;
+
+export const listMixin = () => css`
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 `;

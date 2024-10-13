@@ -18,7 +18,7 @@ import {
   PriceQuantitySection,
   QuantityControl,
   QuantityStepper,
-} from "./Product.styles";
+} from "./ProductDetail.styles";
 
 export default function Product({
   product,
@@ -26,19 +26,36 @@ export default function Product({
   product: ProductInterface | null;
 }) {
   if (!product) return <p>Product not found</p>;
+  const {
+    id,
+    name,
+    power,
+    description,
+    price,
+    quantity,
+    brand,
+    weight,
+    height,
+    width,
+    length,
+    model_code,
+    colour,
+    img_url,
+  } = product;
+
   return (
     <PageContainer>
       <SectionPrimary>
         <ImageContainer>
-          <img src={product.img_url} />
+          <img src={img_url} />
         </ImageContainer>
-        <ProductTitle>{product.name}</ProductTitle>
+        <ProductTitle>{name}</ProductTitle>
         <ProductInfo>
-          {product.power} // Packet of {product.quantity}
+          {power} // Packet of {quantity}
         </ProductInfo>
         <AddToCartSection>
           <PriceQuantitySection>
-            <span>£{product.price}</span>
+            <span>£{price}</span>
             <QuantityControl>
               <QuantityCaption>Qty</QuantityCaption>
               <QuantityStepper>
@@ -56,7 +73,7 @@ export default function Product({
       <div>
         <SectionSecondary>
           <ProductSubtitle>Description</ProductSubtitle>
-          <ProductBody>{product.description}</ProductBody>
+          <ProductBody>{description}</ProductBody>
         </SectionSecondary>
         <SectionPrimary>
           <ProductSubtitle>Specifications</ProductSubtitle>
@@ -69,11 +86,13 @@ export default function Product({
               <ProductBody>Colour</ProductBody>
             </ProductColumn>
             <ProductColumn>
-              <ProductBody>{product.brand}</ProductBody>
-              <ProductBody>{product.weight}</ProductBody>
-              <ProductBody>{product.height}</ProductBody>
-              <ProductBody>{product.model_code}</ProductBody>
-              <ProductBody>{product.colour}</ProductBody>
+              <ProductBody>{brand}</ProductBody>
+              <ProductBody>{weight}</ProductBody>
+              <ProductBody>
+                {height} x {width} x{length}
+              </ProductBody>
+              <ProductBody>{model_code}</ProductBody>
+              <ProductBody>{colour}</ProductBody>
             </ProductColumn>
           </ProductSpecification>
         </SectionPrimary>

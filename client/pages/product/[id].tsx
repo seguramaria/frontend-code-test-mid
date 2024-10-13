@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductDetail from "@/components/Product/Product";
+import ProductDetail from "@/components/ProductDetail/ProductDetail";
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import createApolloClient from "@/lib/apollo-client";
@@ -44,7 +44,7 @@ export default function Product() {
         setProduct(data.Product);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
+          err instanceof Error ? err.message : "Oops, something happened!"
         );
       } finally {
         setLoading(false);

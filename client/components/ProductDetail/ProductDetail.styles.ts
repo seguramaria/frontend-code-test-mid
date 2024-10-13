@@ -44,8 +44,6 @@ export const ImageContainer = styled.div`
 
 export const ProductTitle = styled.h1`
   ${titleMixin}
-  margin: 0;
-  letter-spacing: 1.5px;
 `;
 
 export const ProductSubtitle = styled.h2`
