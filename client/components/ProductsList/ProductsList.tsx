@@ -21,9 +21,9 @@ import { useContext } from "react";
 import { CartContext } from "@/pages/_app";
 
 export default function ProductsList({ products }: { products: Product[] }) {
-  const { getProductQuantity, addToCart, increaseQuantity } =
+  const { getProductQuantity, addToCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
-    
+
   return (
     <List>
       {products.map((product) => (
@@ -43,16 +43,23 @@ export default function ProductsList({ products }: { products: Product[] }) {
                 <QuantityControl>
                   <QuantityCaption>Qty</QuantityCaption>
                   <QuantityStepper>
-                    <QuantityButton>-</QuantityButton>
+                    <QuantityButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        decreaseQuantity(product.id);
+                      }}
+                      disabled={getProductQuantity(product.id) < 1}
+                    >
+                      -
+                    </QuantityButton>
                     <ProductQuantity>
                       <span>{getProductQuantity(product.id)}</span>
                     </ProductQuantity>
                     <QuantityButton
                       onClick={(e) => {
-                        increaseQuantity(product.id);
                         e.stopPropagation();
+                        increaseQuantity(product.id);
                       }}
-                      disabled={getProductQuantity(product.id) === 0}
                     >
                       +
                     </QuantityButton>

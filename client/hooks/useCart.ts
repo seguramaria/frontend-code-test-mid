@@ -23,11 +23,28 @@ export const useCart = () => {
     setCart(updatedCart);
   };
 
+  const decreaseQuantity = (id: number) => {
+    const updatedCart = cart
+      .map((item: Product) => {
+        if (item.id === id && item?.cartQuantity) {
+          return {
+            ...item,
+            cartQuantity: item?.cartQuantity - 1,
+          };
+        }
+        return item;
+      })
+      .filter((item: Product) => item?.cartQuantity && item.cartQuantity > 0);
+
+    setCart(updatedCart);
+  };
+
   console.log(cart); //TODO Create cart
   return {
     cart,
     addToCart,
     getProductQuantity,
     increaseQuantity,
+    decreaseQuantity,
   };
 };

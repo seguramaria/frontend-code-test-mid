@@ -9,7 +9,13 @@ import { createContext } from "react";
 export const CartContext = createContext<any>(null);
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { cart, addToCart, getProductQuantity, increaseQuantity } = useCart();
+  const {
+    cart,
+    addToCart,
+    getProductQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCart();
 
   return (
     <ApolloWrapper>
@@ -19,6 +25,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           addToCart,
           getProductQuantity,
           increaseQuantity,
+          decreaseQuantity,
         }}
       >
         <ThemeProvider theme={theme}>

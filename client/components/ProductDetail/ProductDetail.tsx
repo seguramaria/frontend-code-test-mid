@@ -29,7 +29,7 @@ export default function ProductDetail({
 }) {
   if (!product) return <p>Product not found</p>;
 
-  const { getProductQuantity, addToCart, increaseQuantity } =
+  const { getProductQuantity, addToCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
   const cartQuantity = getProductQuantity(product.id);
 
@@ -49,14 +49,16 @@ export default function ProductDetail({
             <QuantityControl>
               <QuantityCaption>Qty</QuantityCaption>
               <QuantityStepper>
-                <QuantityButton>-</QuantityButton>
+                <QuantityButton
+                  onClick={() => decreaseQuantity(product.id)}
+                  disabled={cartQuantity < 1}
+                >
+                  -
+                </QuantityButton>
                 <ProductQuantity>
                   <span>{cartQuantity}</span>
                 </ProductQuantity>
-                <QuantityButton
-                  onClick={() => increaseQuantity(product.id)}
-                  disabled={cartQuantity === 0}
-                >
+                <QuantityButton onClick={() => increaseQuantity(product.id)}>
                   +
                 </QuantityButton>
               </QuantityStepper>
