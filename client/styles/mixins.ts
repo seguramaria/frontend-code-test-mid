@@ -34,7 +34,8 @@ export const titleMixin = css`
   font-size: ${({ theme }) => theme.typography.title.fontSize};
   line-height: ${({ theme }) => theme.typography.title.lineHeight};
   color: ${({ theme }) => theme.palette.text.primary};
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
+  text-align: left;
   margin: 0;
 `;
 

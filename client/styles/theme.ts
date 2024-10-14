@@ -21,9 +21,9 @@ export const theme = {
   },
   typography: {
     title: {
-      fontWeight: "700",
+      fontWeight: "500",
       fontSize: "1.5rem",
-      lineHeight: "1.5",
+      lineHeight: "2.25rem",
     },
     subtitle: {
       fontWeight: "500",
@@ -41,7 +41,7 @@ export const theme = {
       lineHeight: "1.5",
     },
     action: {
-      fontWeight: "500",
+      fontWeight: "600",
       fontSize: "1rem",
       lineHeight: "1.5",
     },

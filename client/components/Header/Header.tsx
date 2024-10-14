@@ -12,10 +12,10 @@ export default function Header() {
     <HeaderWrapper>
       <PageHeader>
         <Link href="/" passHref>
-          <Logo src="octopus-logo.svg" alt="Logo" />
+          <Logo src="/octopus-logo.svg" alt="Logo" />
         </Link>
         <BasketIconButton>
-          <BasketIcon src="basket.svg" />
+          <BasketIcon src="/basket.svg" />
         </BasketIconButton>
       </PageHeader>
     </HeaderWrapper>

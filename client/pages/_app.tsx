@@ -6,6 +6,7 @@ import ApolloWrapper from "../lib/ApolloProvider";
 import { useBasket } from "hooks/useBasket";
 import { createContext } from "react";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 export const BasketContext = createContext<any>(null);
 
@@ -35,6 +36,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <GlobalStyle />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </ThemeProvider>
       </BasketContext.Provider>
     </ApolloWrapper>
