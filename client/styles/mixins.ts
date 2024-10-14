@@ -1,5 +1,16 @@
 import { css } from "styled-components";
 
+export const headerMixin = () => css`
+  width: 100%;
+  max-width: 1108px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  background-color: ${({ theme }) => theme.palette.background.primary};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
 export const containerMixin = (backgroundColor: string) => css`
   padding: 1rem;
   display: flex;
@@ -104,4 +115,16 @@ export const listMixin = () => css`
   width: 100%;
   align-items: center;
   justify-content: center;
+`;
+
+export const iconMixin = () => css`
+  width: 1.6rem;
+  height: 1.6rem;
+`;
+
+export const iconButonMixin = () => css`
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
 `;

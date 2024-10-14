@@ -5,6 +5,7 @@ import { GlobalStyle } from "@/styles/global";
 import ApolloWrapper from "../lib/ApolloProvider";
 import { useBasket } from "hooks/useBasket";
 import { createContext } from "react";
+import Header from "@/components/Header/Header";
 
 export const BasketContext = createContext<any>(null);
 
@@ -32,6 +33,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       >
         <ThemeProvider theme={theme}>
           <GlobalStyle />
+          <Header />
           <Component {...pageProps} />
         </ThemeProvider>
       </BasketContext.Provider>

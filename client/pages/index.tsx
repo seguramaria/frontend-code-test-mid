@@ -46,12 +46,6 @@ export default function Home() {
   return (
     <main>
       <div className="home">
-        <figure>
-          <img
-            src="https://static.octopuscdn.com/logos/logo.svg"
-            alt="Octopus Energy Logo"
-          />
-        </figure>
         <h2>Products</h2>
         <ProductsList products={products} />
       </div>
