@@ -20,7 +20,7 @@ import {
   QuantityStepper,
 } from "./ProductDetail.styles";
 import { useContext } from "react";
-import { CartContext } from "@/pages/_app";
+import { BasketContext } from "@/pages/_app";
 
 export default function ProductDetail({
   product,
@@ -29,9 +29,21 @@ export default function ProductDetail({
 }) {
   if (!product) return <p>Product not found</p>;
 
-  const { getProductQuantity, addToCart, increaseQuantity, decreaseQuantity } =
-    useContext(CartContext);
-  const cartQuantity = getProductQuantity(product.id);
+  const {
+    getProductQuantity,
+    addToBasket,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useContext(BasketContext);
+  const currentQuantity = getProductQuantity(product.id);
+
+  const handleIncreaseQuantity = (product: Product) => {
+    if (currentQuantity === 0) {
+      addToBasket(product);
+    } else {
+      increaseQuantity(product.id);
+    }
+  };
 
   return (
     <PageContainer>
@@ -51,26 +63,25 @@ export default function ProductDetail({
               <QuantityStepper>
                 <QuantityButton
                   onClick={() => decreaseQuantity(product.id)}
-                  disabled={cartQuantity < 1}
+                  disabled={currentQuantity < 1}
                 >
                   -
                 </QuantityButton>
                 <ProductQuantity>
-                  <span>{cartQuantity}</span>
+                  <span title="Current quantity">
+                    {currentQuantity > 0 ? currentQuantity : 1}
+                  </span>
                 </ProductQuantity>
-                <QuantityButton onClick={() => increaseQuantity(product.id)}>
+                <QuantityButton onClick={() => handleIncreaseQuantity(product)}>
                   +
                 </QuantityButton>
               </QuantityStepper>
             </QuantityControl>
           </PriceQuantitySection>
-          {cartQuantity > 0 ? (
-            <AddToCartButton disabled>Product added</AddToCartButton>
-          ) : (
-            <AddToCartButton onClick={() => addToCart(product)}>
-              Add to cart
-            </AddToCartButton>
-          )}
+
+          <AddToCartButton onClick={() => addToBasket(product)}>
+            Add to cart
+          </AddToCartButton>
         </AddToCartSection>
       </SectionPrimary>
       <div>

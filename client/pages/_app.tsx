@@ -3,26 +3,26 @@ import { AppProps } from "next/app";
 import { theme } from "@/styles/theme";
 import { GlobalStyle } from "@/styles/global";
 import ApolloWrapper from "../lib/ApolloProvider";
-import { useCart } from "hooks/useCart";
+import { useBasket } from "hooks/useBasket";
 import { createContext } from "react";
 
-export const CartContext = createContext<any>(null);
+export const BasketContext = createContext<any>(null);
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const {
-    cart,
-    addToCart,
+    basket,
+    addToBasket,
     getProductQuantity,
     increaseQuantity,
     decreaseQuantity,
-  } = useCart();
+  } = useBasket();
 
   return (
     <ApolloWrapper>
-      <CartContext.Provider
+      <BasketContext.Provider
         value={{
-          cart,
-          addToCart,
+          basket,
+          addToBasket,
           getProductQuantity,
           increaseQuantity,
           decreaseQuantity,
@@ -32,7 +32,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <GlobalStyle />
           <Component {...pageProps} />
         </ThemeProvider>
-      </CartContext.Provider>
+      </BasketContext.Provider>
     </ApolloWrapper>
   );
 }

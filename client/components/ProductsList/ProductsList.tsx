@@ -18,11 +18,15 @@ import {
 } from "../ProductDetail/ProductDetail.styles";
 import { Product } from "@/types/index";
 import { useContext } from "react";
-import { CartContext } from "@/pages/_app";
+import { BasketContext } from "@/pages/_app";
 
 export default function ProductsList({ products }: { products: Product[] }) {
-  const { getProductQuantity, addToCart, increaseQuantity, decreaseQuantity } =
-    useContext(CartContext);
+  const {
+    getProductQuantity,
+    addToBasket,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useContext(BasketContext);
 
   return (
     <List>
@@ -70,7 +74,7 @@ export default function ProductsList({ products }: { products: Product[] }) {
               <AddToCartButton
                 onClick={(e) => {
                   e.stopPropagation();
-                  addToCart(product);
+                  addToBasket(product);
                 }}
               >
                 Add to cart
