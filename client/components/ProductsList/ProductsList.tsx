@@ -42,7 +42,7 @@ export default function ProductsList({ products }: { products: Product[] }) {
               {product.power} // Packet of {product.quantity}
             </ProductInfo>
             <ProductPrice>${product.price}</ProductPrice>
-            {getProductQuantity(product.id) > 0 ? (
+            {getProductQuantity(product.id) ? (
               <AddToCartSection>
                 <QuantityControl>
                   <QuantityCaption>Qty</QuantityCaption>
@@ -74,7 +74,7 @@ export default function ProductsList({ products }: { products: Product[] }) {
               <AddToCartButton
                 onClick={(e) => {
                   e.stopPropagation();
-                  addToBasket(product);
+                  addToBasket(product, 1);
                 }}
               >
                 Add to cart

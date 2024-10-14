@@ -4,11 +4,20 @@ import { Product } from "@/types/index";
 export const useBasket = () => {
   const [basket, setBasket] = useState<Product[]>([]);
 
-  const addToBasket = (product: Product) => {
-    setBasket((prev: Product[]) => [
-      ...prev,
-      { ...product, currentQuantity: 1 },
-    ]);
+  const addToBasket = (product: Product, quantity: number) => {
+    setBasket((prevBasket: Product[]) => {
+      const productInBasket = prevBasket.find(
+        (item: Product) => item.id === product.id
+      );
+
+      if (productInBasket) {
+        return prevBasket.map((item: Product) =>
+          item.id === product.id ? { ...item, currentQuantity: quantity } : item
+        );
+      } else {
+        return [...prevBasket, { ...product, currentQuantity: quantity }];
+      }
+    });
   };
 
   const getProductQuantity = (productId: number) => {
@@ -45,6 +54,10 @@ export const useBasket = () => {
 
     setBasket(updatedBasket);
   };
+  const basketItems = basket.reduce(
+    (acc, item) => acc + item.currentQuantity,
+    0
+  );
 
   console.log(basket); //TODO Create basket
   return {
@@ -53,5 +66,6 @@ export const useBasket = () => {
     getProductQuantity,
     increaseQuantity,
     decreaseQuantity,
+    basketItems,
   };
 };

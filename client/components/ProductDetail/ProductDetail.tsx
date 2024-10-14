@@ -19,7 +19,7 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./ProductDetail.styles";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { BasketContext } from "@/pages/_app";
 
 export default function ProductDetail({
@@ -29,20 +29,11 @@ export default function ProductDetail({
 }) {
   if (!product) return <p>Product not found</p>;
 
-  const {
-    getProductQuantity,
-    addToBasket,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useContext(BasketContext);
-  const currentQuantity = getProductQuantity(product.id);
+  const { addToBasket } = useContext(BasketContext);
+  const [currentQuantity, setCurrentQuantity] = useState(1);
 
-  const handleIncreaseQuantity = (product: Product) => {
-    if (currentQuantity === 0) {
-      addToBasket(product);
-    } else {
-      increaseQuantity(product.id);
-    }
+  const handleAddToBasket = () => {
+    addToBasket(product, currentQuantity);
   };
 
   return (
@@ -62,24 +53,28 @@ export default function ProductDetail({
               <QuantityCaption>Qty</QuantityCaption>
               <QuantityStepper>
                 <QuantityButton
-                  onClick={() => decreaseQuantity(product.id)}
+                  onClick={() => {
+                    if (currentQuantity > 1) {
+                      setCurrentQuantity(currentQuantity - 1);
+                    }
+                  }}
                   disabled={currentQuantity < 1}
                 >
                   -
                 </QuantityButton>
                 <ProductQuantity>
-                  <span title="Current quantity">
-                    {currentQuantity > 0 ? currentQuantity : 1}
-                  </span>
+                  <span title="Current quantity">{currentQuantity}</span>
                 </ProductQuantity>
-                <QuantityButton onClick={() => handleIncreaseQuantity(product)}>
+                <QuantityButton
+                  onClick={() => setCurrentQuantity(currentQuantity + 1)}
+                >
                   +
                 </QuantityButton>
               </QuantityStepper>
             </QuantityControl>
           </PriceQuantitySection>
 
-          <AddToCartButton onClick={() => addToBasket(product)}>
+          <AddToCartButton onClick={handleAddToBasket}>
             Add to cart
           </AddToCartButton>
         </AddToCartSection>

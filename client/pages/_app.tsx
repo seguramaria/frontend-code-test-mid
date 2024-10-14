@@ -15,6 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     getProductQuantity,
     increaseQuantity,
     decreaseQuantity,
+    basketItems,
   } = useBasket();
 
   return (
@@ -26,6 +27,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           getProductQuantity,
           increaseQuantity,
           decreaseQuantity,
+          basketItems,
         }}
       >
         <ThemeProvider theme={theme}>
