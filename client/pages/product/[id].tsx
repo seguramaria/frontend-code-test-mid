@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import ProductDetail from "@/components/ProductDetail/ProductDetail";
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
+import ProductDetail from "@/components/ProductDetail/ProductDetail";
 import createApolloClient from "@/lib/apollo-client";
-import { Product as ProductInterface } from "@/types/index";
+import { GetServerSidePropsContext } from "next";
+import { Product } from "@/types/index";
+import Head from "next/head";
 
 const GET_PRODUCT = gql`
   query GetProduct($id: ID!) {
@@ -26,41 +27,57 @@ const GET_PRODUCT = gql`
   }
 `;
 
-export default function Product() {
-  const router = useRouter();
-  const { id } = router.query;
-  const [product, setProduct] = useState<ProductInterface | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const client = createApolloClient();
+  const { id } = context.params!;
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      if (!id) return;
-      try {
-        const { data } = await createApolloClient.query({
-          query: GET_PRODUCT,
-          variables: { id },
-        });
-        setProduct(data.Product);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Oops, something happened!"
-        );
-      } finally {
-        setLoading(false);
-      }
+  try {
+    const { data } = await client.query({
+      query: GET_PRODUCT,
+      variables: { id },
+    });
+
+    return {
+      props: {
+        product: data.Product,
+      },
     };
-    fetchProduct();
-  }, [id]);
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return {
+      props: {
+        product: null,
+      },
+    };
+  }
+}
 
-  if (loading) return <p>Loading...</p>;
-  if (error) console.log(error);
+export default function ProductDetailPage({ product }: { product: Product }) {
+  const router = useRouter();
+  const { isFallback } = router;
+
+  if (isFallback) {
+    return <p>Loading...</p>;
+  }
+
+  if (!product) {
+    return <p>Error: Product not found.</p>;
+  }
 
   return (
-    <main>
-      <div>
-        <ProductDetail product={product} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>
+          {`${product.name} | Octopus Energy | We're doing energy better - for
+      you and the environment.`}
+        </title>
+        <meta name="description" content={product.description} />
+      </Head>
+      <main>
+        <div>
+          <ProductDetail product={product} />
+        </div>
+      </main>
+    </>
   );
 }

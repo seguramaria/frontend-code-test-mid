@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
 import createApolloClient from "@/lib/apollo-client";
-import { Product as ProductInterface } from "@/types/index";
 import ProductsList from "@/components/ProductsList/ProductsList";
+import Head from "next/head";
+import { Product } from "@/types/index";
 
 const GET_ALL_PRODUCTS = gql`
   query {
@@ -16,39 +16,43 @@ const GET_ALL_PRODUCTS = gql`
   }
 `;
 
-export default function Home() {
-  const [products, setProducts] = useState<ProductInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export async function getServerSideProps() {
+  const client = createApolloClient();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await createApolloClient.query({
-          query: GET_ALL_PRODUCTS,
-        });
-        setProducts(data.allProducts);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
-        );
-      } finally {
-        setLoading(false);
-      }
+  try {
+    const { data } = await client.query({ query: GET_ALL_PRODUCTS });
+    return {
+      props: {
+        products: data.allProducts,
+      },
     };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
+}
 
-    fetchProducts();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return console.log(error);
-
+export default function Home({ products }: { products: Product[] }) {
   return (
-    <main>
-      <div className="home">
-        <h2>Products</h2>
-        <ProductsList products={products} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Octopus Energy: Switch to affordable renewable energy</title>
+        <meta
+          name="description"
+          content="Octopus Energy offers 100% renewable energy plans in Texas. Get affordable electricity plans backed by technology and innovation. Join us today!"
+        />
+        <meta name="robots" content="index, follow" />
+      </Head>
+      <main>
+        <div className="home">
+          <h1>Products</h1>
+          <ProductsList products={products} />
+        </div>
+      </main>
+    </>
   );
 }
