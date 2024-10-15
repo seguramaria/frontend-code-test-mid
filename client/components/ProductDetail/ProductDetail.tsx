@@ -18,6 +18,7 @@ import {
   PriceQuantitySection,
   QuantityControl,
   QuantityStepper,
+  Popover,
 } from "./ProductDetail.styles";
 import { useState, useContext, useEffect } from "react";
 import { BasketContext } from "@/pages/_app";
@@ -30,9 +31,11 @@ export default function ProductDetail({
   if (!product) return <p>Product not found</p>;
   const { addToBasket, basketItems, basket } = useContext(BasketContext);
   const [currentQuantity, setCurrentQuantity] = useState(1);
+  const [showPopover, setShowPopover] = useState(false);
+  const [popoverMessage, setPopoverMessage] = useState("");
 
   useEffect(() => {
-    if (basket.length > 0) {
+    if (basket?.length > 0) {
       basket.find((basketProduct: Product) => {
         if (basketProduct.id === product.id && basketProduct?.currentQuantity)
           setCurrentQuantity(basketProduct.currentQuantity);
@@ -41,9 +44,22 @@ export default function ProductDetail({
   }, [basket]);
 
   const handleAddToBasket = () => {
-    if (currentQuantity > 0) {
-      addToBasket(product, currentQuantity);
+    const productInBasket = basket.find(
+      (basketProduct: Product) => basketProduct.id === product?.id
+    );
+
+    if (productInBasket?.currentQuantity !== currentQuantity) {
+      setPopoverMessage(
+        productInBasket
+          ? `Product quantity successfully updated ${currentQuantity}x`
+          : `Product successfully added ${currentQuantity}x`
+      );
+    } else {
+      return null;
     }
+    addToBasket(product, currentQuantity);
+    setShowPopover(true);
+    setTimeout(() => setShowPopover(false), 3000);
   };
 
   return (
@@ -83,6 +99,15 @@ export default function ProductDetail({
               </QuantityStepper>
             </QuantityControl>
           </PriceQuantitySection>
+          {showPopover && (
+            <Popover>
+              <p>{popoverMessage}</p>
+              <p>
+                Items in basket:{" "}
+                <span title="Basket items"> {basketItems}</span>
+              </p>
+            </Popover>
+          )}
 
           <AddToCartButton onClick={handleAddToBasket}>
             Add to cart
@@ -116,7 +141,6 @@ export default function ProductDetail({
           </ProductSpecification>
         </SectionPrimary>
       </div>
-      <p title="Basket items">{basketItems}</p>
     </PageContainer>
   );
 }

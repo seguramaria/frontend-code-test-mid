@@ -130,3 +130,20 @@ export const QuantityStepper = styled.div`
   align-items: center;
   gap: 8px;
 `;
+
+export const Popover = styled.div`
+  position: absolute;
+  width: 80%;
+  max-width: 375px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: ${({ theme }) => theme?.palette?.background?.secondary};
+  padding: 0.625rem;
+  border-radius: 8px;
+  z-index: 100;
+  opacity: 0.9;
+  transition: opacity 0.3s ease-in-out;
+  p {
+    margin: 0;
+  }
+`;

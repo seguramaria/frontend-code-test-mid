@@ -88,7 +88,7 @@ export const buttonMixin = css`
   }
 
   &:focus {
-    outline: 2px solid ${({ theme }) => theme?.palette?.border.focus};
+    border: 2px solid ${({ theme }) => theme?.palette?.border.focus};
   }
 `;
 

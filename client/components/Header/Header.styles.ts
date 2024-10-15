@@ -18,6 +18,7 @@ export const PageHeader = styled.header`
 export const Logo = styled.img`
   width: 10rem;
   height: 2rem;
+  cursor: pointer;
 `;
 
 export const BasketIconButton = styled.a`
