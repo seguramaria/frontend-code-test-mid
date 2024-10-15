@@ -102,20 +102,13 @@ export const porductCardMixin = () => css`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   text-align: center;
-  width: 14rem;
+  max-width: 14rem;
+
   border: 1px solid ${({ theme }) => theme?.palette?.border.primary};
   cursor: pointer;
   &:hover {
     box-shadow: 0 8px 16px ${({ theme }) => theme?.palette?.border.primary};
   }
-`;
-
-export const listMixin = () => css`
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const iconMixin = () => css`

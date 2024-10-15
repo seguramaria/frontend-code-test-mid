@@ -1,87 +1,12 @@
-import Link from "next/link";
-import {
-  AddToCartButton,
-  List,
-  ListItem,
-  ProductPrice,
-  ProductImage,
-  ProductInfo,
-  ProductTitle,
-} from "./ProductsList.styles";
-import {
-  AddToCartSection,
-  ProductQuantity,
-  QuantityButton,
-  QuantityCaption,
-  QuantityControl,
-  QuantityStepper,
-} from "../ProductDetail/ProductDetail.styles";
+import { List } from "./ProductsList.styles";
 import { Product } from "@/types/index";
-import { useContext } from "react";
-import { BasketContext } from "@/pages/_app";
+import ProductCard from "../ProductCard/ProductCard";
 
 export default function ProductsList({ products }: { products: Product[] }) {
-  const {
-    getProductQuantity,
-    addToBasket,
-    increaseQuantity,
-    decreaseQuantity,
-  } = useContext(BasketContext);
-
   return (
     <List>
       {products.map((product) => (
-        <Link href={`/product/${product.id}`} passHref key={product.id}>
-          <ListItem>
-            <ProductImage
-              src="https://i.ibb.co/2nzwxnQ/bulb.png"
-              alt={product.name}
-            />
-            <ProductTitle>{product.name}</ProductTitle>
-            <ProductInfo>
-              {product.power} // Packet of {product.quantity}
-            </ProductInfo>
-            <ProductPrice>${product.price}</ProductPrice>
-            {getProductQuantity(product.id) ? (
-              <AddToCartSection>
-                <QuantityControl>
-                  <QuantityCaption>Qty</QuantityCaption>
-                  <QuantityStepper>
-                    <QuantityButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        decreaseQuantity(product.id);
-                      }}
-                      disabled={getProductQuantity(product.id) < 1}
-                    >
-                      -
-                    </QuantityButton>
-                    <ProductQuantity>
-                      <span>{getProductQuantity(product.id)}</span>
-                    </ProductQuantity>
-                    <QuantityButton
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        increaseQuantity(product.id);
-                      }}
-                    >
-                      +
-                    </QuantityButton>
-                  </QuantityStepper>
-                </QuantityControl>
-              </AddToCartSection>
-            ) : (
-              <AddToCartButton
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToBasket(product, 1);
-                }}
-              >
-                Add to cart
-              </AddToCartButton>
-            )}
-          </ListItem>
-        </Link>
+        <ProductCard key={product.id} product={product} />
       ))}
     </List>
   );

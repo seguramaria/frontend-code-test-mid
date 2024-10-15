@@ -43,6 +43,13 @@ export default function ProductDetail({
     }
   }, [basket]);
 
+  const formattedPrice = (priceInCents: number) => {
+    return (priceInCents / 100).toLocaleString("en-GB", {
+      style: "currency",
+      currency: "GBP",
+    });
+  };
+
   const handleAddToBasket = () => {
     const productInBasket = basket.find(
       (basketProduct: Product) => basketProduct.id === product?.id
@@ -74,7 +81,7 @@ export default function ProductDetail({
         </ProductInfo>
         <AddToCartSection>
           <PriceQuantitySection>
-            <span>£{product.price}</span>
+            <span>{formattedPrice(product.price)}</span>
             <QuantityControl>
               <QuantityCaption>Qty</QuantityCaption>
               <QuantityStepper>

@@ -6,6 +6,9 @@ export const FooterContainer = styled.footer`
   padding: 1rem;
   text-align: left;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     padding: 1rem 3rem;
   }
