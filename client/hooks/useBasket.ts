@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "@/types/index";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState<Product[]>([]);
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const localStorageBasket = localStorage.getItem("shopping-basket");
+    if (localStorageBasket) {
+      setBasket(JSON.parse(localStorageBasket));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem("shopping-basket", JSON.stringify(basket));
+    }
+  }, [basket, isClient]);
 
   const addToBasket = (product: Product, quantity: number) => {
     setBasket((prevBasket: Product[]) => {
@@ -58,6 +73,7 @@ export const useBasket = () => {
     (acc, item) => acc + (item.currentQuantity ? item.currentQuantity : 0),
     0
   );
+  console.log(basketItems);
 
   return {
     basket,
