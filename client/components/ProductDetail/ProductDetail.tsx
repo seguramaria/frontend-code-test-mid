@@ -19,7 +19,7 @@ import {
   QuantityControl,
   QuantityStepper,
 } from "./ProductDetail.styles";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { BasketContext } from "@/pages/_app";
 
 export default function ProductDetail({
@@ -28,9 +28,17 @@ export default function ProductDetail({
   product: Product | null;
 }) {
   if (!product) return <p>Product not found</p>;
-
-  const { addToBasket, basketItems } = useContext(BasketContext);
+  const { addToBasket, basketItems, basket } = useContext(BasketContext);
   const [currentQuantity, setCurrentQuantity] = useState(1);
+
+  useEffect(() => {
+    if (basket.length > 0) {
+      basket.find((basketProduct: Product) => {
+        if (basketProduct.id === product.id && basketProduct?.currentQuantity)
+          setCurrentQuantity(basketProduct.currentQuantity);
+      });
+    }
+  }, [basket]);
 
   const handleAddToBasket = () => {
     if (currentQuantity > 0) {

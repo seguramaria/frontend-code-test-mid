@@ -69,11 +69,12 @@ export const useBasket = () => {
 
     setBasket(updatedBasket);
   };
+
   const basketItems = basket.reduce(
+    // TODO: THIS IT'S NOT CORRECT.
     (acc, item) => acc + (item.currentQuantity ? item.currentQuantity : 0),
     0
   );
-  console.log(basketItems);
 
   return {
     basket,
