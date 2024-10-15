@@ -1,4 +1,4 @@
-import { headerMixin, iconButonMixin, iconMixin } from "@/styles/mixins";
+import { headerMixin, iconMixin } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
@@ -21,7 +21,10 @@ export const Logo = styled.img`
 `;
 
 export const BasketIconButton = styled.a`
-  ${iconButonMixin()}
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
 `;
 
 export const BasketIcon = styled.img`

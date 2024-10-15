@@ -13,5 +13,5 @@ export type Product = {
   model_code: string;
   colour: string;
   img_url: string;
-  currentQuantity: number;
+  currentQuantity?: number;
 };

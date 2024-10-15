@@ -29,11 +29,13 @@ export default function ProductDetail({
 }) {
   if (!product) return <p>Product not found</p>;
 
-  const { addToBasket } = useContext(BasketContext);
+  const { addToBasket, basketItems } = useContext(BasketContext);
   const [currentQuantity, setCurrentQuantity] = useState(1);
 
   const handleAddToBasket = () => {
-    addToBasket(product, currentQuantity);
+    if (currentQuantity > 0) {
+      addToBasket(product, currentQuantity);
+    }
   };
 
   return (
@@ -106,6 +108,7 @@ export default function ProductDetail({
           </ProductSpecification>
         </SectionPrimary>
       </div>
+      <p title="Basket items">{basketItems}</p>
     </PageContainer>
   );
 }

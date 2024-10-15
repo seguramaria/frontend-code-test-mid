@@ -10,10 +10,10 @@ export const BasketContainer = styled.div<{ $isOpen: boolean }>`
   transition: transform 300ms ease-in-out;
   width: 320px;
   z-index: 3;
-  background-color: ${({ theme }) => theme.palette.background.secondary};
+  background-color: ${({ theme }) => theme?.palette?.background?.secondary};
   button {
     font-size: 1rem;
-    color: ${({ theme }) => theme.palette.text.primary};
+    color: ${({ theme }) => theme?.palette?.text?.primary};
     background: none;
     border: 0;
   }

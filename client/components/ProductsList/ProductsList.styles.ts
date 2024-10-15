@@ -30,7 +30,7 @@ export const ProductTitle = styled.h1`
 
 export const ProductInfo = styled.p`
   ${bodyMixin}
-  color: ${({ theme }) => theme.palette.text.disabled};
+  color: ${({ theme }) => theme?.palette?.text?.disabled};
   margin: 0;
 `;
 

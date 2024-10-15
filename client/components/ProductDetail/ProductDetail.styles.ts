@@ -14,20 +14,20 @@ export const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     padding: 2rem;
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
     padding: 2.5rem;
   }
 `;
 
 export const SectionPrimary = styled.section`
-  ${({ theme }) => containerMixin(theme.palette.background.primary)}
+  ${({ theme }) => containerMixin(theme?.palette?.background?.primary)}
 `;
 
 export const SectionSecondary = styled.section`
-  ${({ theme }) => containerMixin(theme.palette.background.secondary)}
+  ${({ theme }) => containerMixin(theme?.palette?.background?.secondary)}
 `;
 
 export const ImageContainer = styled.div`
@@ -56,7 +56,7 @@ export const ProductBody = styled.p`
 `;
 
 export const ProductInfo = styled(ProductBody)`
-  color: ${({ theme }) => theme.palette.text.disabled};
+  color: ${({ theme }) => theme?.palette?.text?.disabled};
   margin-bottom: 0;
 `;
 
@@ -101,7 +101,7 @@ export const ProductSpecification = styled.div`
   ${ProductColumn}:first-child {
     margin-right: 2.25rem;
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.mobileXl}) {
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.mobileXl}) {
     width: 50%;
     ${ProductColumn}:first-child {
       margin-right: 3.125rem;

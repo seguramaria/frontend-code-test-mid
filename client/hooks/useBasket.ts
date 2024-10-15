@@ -55,11 +55,10 @@ export const useBasket = () => {
     setBasket(updatedBasket);
   };
   const basketItems = basket.reduce(
-    (acc, item) => acc + item.currentQuantity,
+    (acc, item) => acc + (item.currentQuantity ? item.currentQuantity : 0),
     0
   );
 
-  console.log(basket); //TODO Create basket
   return {
     basket,
     addToBasket,

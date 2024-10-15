@@ -8,7 +8,7 @@ import { createContext } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
-export const BasketContext = createContext<any>(null);
+export const BasketContext = createContext<any>("");
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const {

@@ -20,7 +20,7 @@ export default function ShoppingBasket({
         <button onClick={toggleBasket}>X</button>
         <ul>
           {basket.map((basketProduct: Product) => (
-            <li>{basketProduct.name}</li>
+            <li key={basketProduct.id}>{basketProduct.name}</li>
           ))}
         </ul>
         <p>Total items: {basketItems}</p>
