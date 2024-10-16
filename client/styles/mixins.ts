@@ -12,20 +12,23 @@ export const headerMixin = () => css`
 `;
 
 export const containerMixin = (backgroundColor: string) => css`
-  padding: 1rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   text-align: justify;
   background-color: ${backgroundColor};
+`;
 
+export const wrapperMixin = css`
+  max-width: 1108px;
+  padding: 0 1rem;
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 3rem;
   }
-
   @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
-    padding: 1.5 2rem;
+    padding: 1.5rem 4rem;
   }
 `;
 

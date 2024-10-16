@@ -1,4 +1,4 @@
-import { captionMixin } from "@/styles/mixins";
+import { captionMixin, wrapperMixin } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
@@ -6,14 +6,12 @@ export const FooterContainer = styled.footer`
   padding: 1rem;
   text-align: left;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  z-index: 1000;
+
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     padding: 1rem 3rem;
   }
   @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
-    padding: 0.5rem;
+    padding: 3rem;
   }
 `;
 
@@ -22,4 +20,7 @@ export const FooterText = styled.p`
   max-width: 1108px;
   margin: 0px auto;
   color: ${({ theme }) => theme?.palette?.text?.disabled};
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
+    font-size: 0.75rem;
+  }
 `;

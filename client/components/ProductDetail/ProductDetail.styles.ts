@@ -9,16 +9,17 @@ import {
 } from "@/styles/mixins";
 
 export const PageContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  padding-bottom: 1rem;
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
-    padding: 2rem;
+    padding-bottom: 3rem;
   }
   @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
-    padding: 2.5rem;
+    padding-bottom: 4rem;
   }
 `;
 
@@ -28,6 +29,9 @@ export const SectionPrimary = styled.section`
 
 export const SectionSecondary = styled.section`
   ${({ theme }) => containerMixin(theme?.palette?.background?.secondary)}
+`;
+export const SectionTerciary = styled.section`
+  ${({ theme }) => containerMixin(theme?.palette?.background?.primary)}
 `;
 
 export const ImageContainer = styled.div`
@@ -97,12 +101,10 @@ export const ProductColumn = styled.div`
 
 export const ProductSpecification = styled.div`
   display: flex;
-  width: 100%;
   ${ProductColumn}:first-child {
     margin-right: 2.25rem;
   }
   @media (min-width: ${({ theme }) => theme?.breakpoints?.mobileXl}) {
-    width: 50%;
     ${ProductColumn}:first-child {
       margin-right: 3.125rem;
     }
