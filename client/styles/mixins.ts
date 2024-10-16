@@ -74,6 +74,7 @@ export const buttonMixin = css`
   font-weight: ${({ theme }) => theme?.typography?.action.fontWeight};
   font-size: ${({ theme }) => theme?.typography?.action.fontSize};
   color: ${({ theme }) => theme?.palette?.text?.secondary};
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 
   &:disabled {
     background-color: ${({ theme }) => theme?.palette?.background?.disabled};
@@ -91,7 +92,11 @@ export const buttonMixin = css`
   }
 
   &:focus {
-    border: 2px solid ${({ theme }) => theme?.palette?.border.focus};
+    border: 2px solid ${({ theme }) => theme?.palette?.text?.primary};
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 `;
 

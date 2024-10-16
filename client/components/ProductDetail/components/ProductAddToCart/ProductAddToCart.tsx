@@ -79,15 +79,10 @@ export default function ProductAddToCart({ product }: { product: Product }) {
       {showPopover && (
         <Popover>
           <p>{popoverMessage}</p>
-          {/* <p>
-            Items in basket: <span title="Basket items"> {basketItems}</span>
-          </p> */}
+          Items in basket: <span title="Basket items"> {basketItems}</span>
         </Popover>
       )}
       <AddToCartButton onClick={handleAddToBasket}>Add to cart</AddToCartButton>
-      <p>
-        Items in basket: <span title="Basket items"> {basketItems}</span>
-      </p>
     </AddToCartSection>
   );
 }

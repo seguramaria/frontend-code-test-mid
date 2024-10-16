@@ -14,6 +14,6 @@ export const List = styled.ul`
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center; /* Centrar elementos horizontalmente */
+    justify-content: center;
   }
 `;

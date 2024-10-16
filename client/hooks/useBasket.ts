@@ -72,7 +72,7 @@ export const useBasket = () => {
   const basketItems = useMemo(
     () =>
       basket.reduce(
-        (acc: number, product: Product) => acc + (product.currentQuantity ?? 0),
+        (acc: number, product: Product) => acc + (product.currentQuantity || 0),
         0
       ),
     [basket]
@@ -83,7 +83,7 @@ export const useBasket = () => {
       basket
         .reduce(
           (total: number, product: Product) =>
-            total + (product.quantity || 0) * product.price,
+            total + (product.currentQuantity || 0) * product.price,
           0
         )
         .toFixed(),
