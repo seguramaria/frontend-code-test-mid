@@ -95,7 +95,7 @@ export const buttonMixin = css`
   }
 `;
 
-export const porductCardMixin = () => css`
+export const productCardMixin = () => css`
   display: flex;
   flex-direction: column;
   justify-content: center;

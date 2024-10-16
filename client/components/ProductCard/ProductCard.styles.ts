@@ -1,8 +1,8 @@
-import { porductCardMixin, buttonMixin } from "@/styles/mixins";
+import { productCardMixin, buttonMixin } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const Card = styled.li`
-  ${porductCardMixin}
+  ${productCardMixin}
 `;
 
 export const ProductImage = styled.img`

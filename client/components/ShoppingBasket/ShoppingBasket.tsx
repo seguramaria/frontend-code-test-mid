@@ -1,7 +1,14 @@
 import { useContext } from "react";
-import { Overlay, BasketContainer } from "./ShoppingBasket.styles";
+import {
+  Overlay,
+  BasketContainer,
+  CloseButton,
+  BasketFooter,
+} from "./ShoppingBasket.styles";
+import { ShoppingList, ProductCardWrapper } from "./ShoppingBasket.styles";
 import { BasketContext } from "@/pages/_app";
 import { Product } from "@/types/index";
+import ShoppingBasketItem from "../ShoppingBasketItem/ShoppingBasketItem";
 
 interface ShoppingBasketProps {
   isOpen: boolean;
@@ -13,18 +20,25 @@ export default function ShoppingBasket({
   toggleBasket,
 }: ShoppingBasketProps) {
   const { basket, basketItems } = useContext(BasketContext);
+
   return (
     <>
       <Overlay $isOpen={isOpen} onClick={toggleBasket} />
       <BasketContainer $isOpen={isOpen}>
-        <button onClick={toggleBasket}>X</button>
-        <ul>
+        <CloseButton title="Close shopping basket" onClick={toggleBasket}>
+          X
+        </CloseButton>
+        <ShoppingList>
           {basket.map((basketProduct: Product) => (
-            <li key={basketProduct.id}>{basketProduct.name}</li>
+            <ProductCardWrapper key={basketProduct.id}>
+              <ShoppingBasketItem product={basketProduct} />
+            </ProductCardWrapper>
           ))}
-        </ul>
-        <p>Total items: {basketItems}</p>
-        <p>Total price: 0</p>
+        </ShoppingList>
+        <BasketFooter>
+          <p>Total items: {basketItems}</p>
+          <p>Total price: 0</p>
+        </BasketFooter>
       </BasketContainer>
     </>
   );
