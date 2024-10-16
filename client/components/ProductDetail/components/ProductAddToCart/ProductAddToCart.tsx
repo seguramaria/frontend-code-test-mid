@@ -67,7 +67,7 @@ export default function ProductAddToCart({ product }: { product: Product }) {
                   setCurrentQuantity(currentQuantity - 1);
                 }
               }}
-              disabled={currentQuantity < 1}
+              disabled={currentQuantity === 1}
             >
               -
             </QuantityButton>

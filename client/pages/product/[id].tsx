@@ -61,7 +61,7 @@ export default function ProductDetailPage({ product }: { product: Product }) {
   }
 
   if (!product) {
-    return <p>Error: Product not found.</p>;
+    return <p>Product not found.</p>;
   }
 
   return (
