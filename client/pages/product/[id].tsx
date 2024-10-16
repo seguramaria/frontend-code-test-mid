@@ -54,7 +54,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 export default function ProductDetailPage({ product }: { product: Product }) {
   const router = useRouter();
-  const { isFallback } = router;
+  const isFallback = router?.isFallback;
 
   if (isFallback) {
     return <p>Loading...</p>;

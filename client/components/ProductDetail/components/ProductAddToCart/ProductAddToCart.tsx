@@ -36,7 +36,7 @@ export default function ProductAddToCart({ product }: { product: Product }) {
   };
 
   const handleAddToBasket = () => {
-    const productInBasket = basket.find(
+    const productInBasket = basket?.find(
       (basketProduct: Product) => basketProduct.id === product?.id
     );
 
@@ -85,13 +85,15 @@ export default function ProductAddToCart({ product }: { product: Product }) {
       {showPopover && (
         <Popover>
           <p>{popoverMessage}</p>
-          <p>
+          {/* <p>
             Items in basket: <span title="Basket items"> {basketItems}</span>
-          </p>
+          </p> */}
         </Popover>
       )}
-
       <AddToCartButton onClick={handleAddToBasket}>Add to cart</AddToCartButton>
+      <p>
+        Items in basket: <span title="Basket items"> {basketItems}</span>
+      </p>
     </AddToCartSection>
   );
 }

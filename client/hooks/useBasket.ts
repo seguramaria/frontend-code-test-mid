@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Product } from "@/types/index";
 
 export const useBasket = () => {
@@ -69,11 +69,13 @@ export const useBasket = () => {
 
     setBasket(updatedBasket);
   };
-
-  const basketItems = basket.reduce(
-    // TODO: THIS IT'S NOT CORRECT.
-    (acc, item) => acc + (item.currentQuantity ? item.currentQuantity : 0),
-    0
+  const basketItems = useMemo(
+    () =>
+      basket.reduce(
+        (acc: number, product: Product) => acc + (product.currentQuantity ?? 0),
+        0
+      ),
+    [basket]
   );
 
   return {

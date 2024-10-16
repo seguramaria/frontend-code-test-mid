@@ -1,5 +1,5 @@
-import { render, fireEvent, screen } from "@testing-library/react";
-import Product from "@/components/ProductDetail/ProductDetail";
+import { render, fireEvent } from "@testing-library/react";
+import Product from "@/pages/product/[id]";
 import { BasketContext } from "@/pages/_app";
 
 const mockedProduct = {
@@ -41,15 +41,12 @@ test("should be able to increase and decrease product quantity", async () => {
 
 test("should be able to add items to the basket", async () => {
   const { getByText, getByTitle } = render(
-    <BasketContext.Provider
-      value={{ addToBasket: mockAddToBasket, basketItems: 0 }}
-    >
+    <BasketContext.Provider value={{ addToBasket: mockAddToBasket }}>
       <Product product={mockedProduct} />
     </BasketContext.Provider>
   );
 
   const increaseQuantity = getByText("+");
-
   const currentQuantity = getByTitle("Current quantity");
 
   fireEvent.click(increaseQuantity);
