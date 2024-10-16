@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import ProductDetail from "@/components/ProductDetail/ProductDetail";
-import createApolloClient from "@/lib/apollo-client";
+import client from "@/lib/apollo-client";
 import { GetServerSidePropsContext } from "next";
 import { Product } from "@/types/index";
 import Head from "next/head";
@@ -28,7 +28,6 @@ const GET_PRODUCT = gql`
 `;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const client = createApolloClient();
   const { id } = context.params!;
 
   try {

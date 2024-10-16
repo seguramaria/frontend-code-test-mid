@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import createApolloClient from "@/lib/apollo-client";
+import client from "@/lib/apollo-client";
 import ProductsList from "@/components/ProductsList/ProductsList";
 import Head from "next/head";
 import { Product } from "@/types/index";
@@ -17,8 +17,6 @@ const GET_ALL_PRODUCTS = gql`
 `;
 
 export async function getServerSideProps() {
-  const client = createApolloClient();
-
   try {
     const { data } = await client.query({ query: GET_ALL_PRODUCTS });
     return {
