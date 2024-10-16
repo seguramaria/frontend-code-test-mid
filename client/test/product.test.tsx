@@ -1,6 +1,6 @@
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import Product from "@/pages/product/[id]";
-import { BasketContext } from "@/pages/_app";
+import { customRender } from "utils/customRender";
 
 const mockedProduct = {
   id: 1,
@@ -20,10 +20,10 @@ const mockedProduct = {
   img_url: "https://i.ibb.co/2nzwxnQ/bulb.png",
 };
 
-const mockAddToBasket = jest.fn();
-
 test("should be able to increase and decrease product quantity", async () => {
-  const { getByText, getByTitle } = render(<Product product={mockedProduct} />);
+  const { getByText, getByTitle } = customRender(
+    <Product product={mockedProduct} />
+  );
 
   const increaseQuantity = getByText("+");
 
@@ -40,10 +40,8 @@ test("should be able to increase and decrease product quantity", async () => {
 });
 
 test("should be able to add items to the basket", async () => {
-  const { getByText, getByTitle } = render(
-    <BasketContext.Provider value={{ addToBasket: mockAddToBasket }}>
-      <Product product={mockedProduct} />
-    </BasketContext.Provider>
+  const { getByText, getByTitle } = customRender(
+    <Product product={mockedProduct} />
   );
 
   const increaseQuantity = getByText("+");
