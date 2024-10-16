@@ -1,25 +1,10 @@
 import { Product } from "@/types/index";
 import {
-  AddToCartSection,
   PageContainer,
-  ProductQuantity,
-  QuantityCaption,
-  ProductBody,
-  ProductSubtitle,
   SectionPrimary,
   SectionSecondary,
-  ProductSpecification,
-  ProductColumn,
-  QuantityButton,
-  AddToCartButton,
-  PriceQuantitySection,
-  QuantityControl,
-  QuantityStepper,
-  Popover,
   SectionTerciary,
 } from "./ProductDetail.styles";
-import { useState, useContext, useEffect } from "react";
-import { BasketContext } from "@/pages/_app";
 import ProductImage from "./components/ProductImage/ProductImage";
 import ProductInfo from "./components/ProductInfo/ProductInfo";
 import ProductAddToCart from "./components/ProductAddToCart/ProductAddToCart";
@@ -36,12 +21,14 @@ export default function ProductDetail({
     <PageContainer>
       <SectionPrimary>
         <ProductImage productImgUrl={product.img_url} />
-        <ProductInfo
-          productName={product.name}
-          productPower={product.power}
-          productQuantity={product.quantity}
-        />
-        <ProductAddToCart product={product} />
+        <div>
+          <ProductInfo
+            productName={product.name}
+            productPower={product.power}
+            productQuantity={product.quantity}
+          />
+          <ProductAddToCart product={product} />
+        </div>
       </SectionPrimary>
       <>
         <SectionSecondary>

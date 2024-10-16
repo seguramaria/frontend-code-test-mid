@@ -6,6 +6,12 @@ export const AddToCartSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
+    padding: 0 3rem;
+  }
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
+    padding: 0 4rem;
+  }
 `;
 
 export const PriceQuantitySection = styled.section`

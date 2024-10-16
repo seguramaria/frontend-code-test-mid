@@ -21,7 +21,7 @@ export default function ProductAddToCart({ product }: { product: Product }) {
 
   useEffect(() => {
     if (basket?.length > 0) {
-      basket.find((basketProduct: Product) => {
+      basket?.find((basketProduct: Product) => {
         if (basketProduct.id === product.id && basketProduct?.currentQuantity)
           setCurrentQuantity(basketProduct.currentQuantity);
       });
