@@ -32,7 +32,10 @@ export default function ShoppingBasket({
         <ShoppingList>
           {basket.map((basketProduct: Product) => (
             <ProductCardWrapper key={basketProduct.id}>
-              <ShoppingBasketItem product={basketProduct} />
+              <ShoppingBasketItem
+                product={basketProduct}
+                toggleBasket={toggleBasket}
+              />
             </ProductCardWrapper>
           ))}
         </ShoppingList>

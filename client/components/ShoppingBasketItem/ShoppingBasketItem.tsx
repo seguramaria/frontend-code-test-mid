@@ -11,7 +11,12 @@ import { BasketContext } from "@/pages/_app";
 import ProductAddToCart from "./components/ProductAddToCart/ProductAddToCart";
 import { formattedPrice } from "utils/formattedPrice";
 
-export default function ShoppingBasdketItem({ product }: { product: Product }) {
+type Props = {
+  product: Product;
+  toggleBasket: () => void;
+};
+
+export default function ShoppingBasdketItem({ product, toggleBasket }: Props) {
   const { getProductQuantity, addToBasket } = useContext(BasketContext);
   if (!product) return null;
 
@@ -19,7 +24,11 @@ export default function ShoppingBasdketItem({ product }: { product: Product }) {
 
   return (
     <Link href={`/product/${product.id}`} passHref>
-      <Card>
+      <Card
+        onClick={() => {
+          toggleBasket();
+        }}
+      >
         <ProductTitle>{product.name}</ProductTitle>
         <ProductPrice>{formattedPrice(product.price)}</ProductPrice>
         {productQuantity ? (

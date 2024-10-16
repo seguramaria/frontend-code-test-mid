@@ -21,7 +21,7 @@ export const SectionPrimary = styled.section`
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 0 3rem;
     max-width: 1108px;
   }

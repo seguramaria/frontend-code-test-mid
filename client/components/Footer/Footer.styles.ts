@@ -23,4 +23,7 @@ export const FooterText = styled.p`
   @media (min-width: ${({ theme }) => theme?.breakpoints?.tablet}) {
     font-size: 0.75rem;
   }
+  @media (min-width: ${({ theme }) => theme?.breakpoints?.desktop}) {
+    padding-inline: 3rem;
+  }
 `;
