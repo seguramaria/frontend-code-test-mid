@@ -12,6 +12,7 @@ import {
 } from "./ProductAddToCart.styles";
 import { useState, useContext, useEffect } from "react";
 import { BasketContext } from "@/pages/_app";
+import { formattedPrice } from "utils/formattedPrice";
 
 export default function ProductAddToCart({ product }: { product: Product }) {
   const { addToBasket, basketItems, basket } = useContext(BasketContext);
@@ -27,13 +28,6 @@ export default function ProductAddToCart({ product }: { product: Product }) {
       });
     }
   }, [basket]);
-
-  const formattedPrice = (priceInCents: number) => {
-    return (priceInCents / 100).toLocaleString("en-GB", {
-      style: "currency",
-      currency: "GBP",
-    });
-  };
 
   const handleAddToBasket = () => {
     const productInBasket = basket?.find(

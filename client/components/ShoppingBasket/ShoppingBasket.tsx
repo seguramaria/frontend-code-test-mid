@@ -9,6 +9,7 @@ import { ShoppingList, ProductCardWrapper } from "./ShoppingBasket.styles";
 import { BasketContext } from "@/pages/_app";
 import { Product } from "@/types/index";
 import ShoppingBasketItem from "../ShoppingBasketItem/ShoppingBasketItem";
+import { formattedPrice } from "utils/formattedPrice";
 
 interface ShoppingBasketProps {
   isOpen: boolean;
@@ -19,7 +20,7 @@ export default function ShoppingBasket({
   isOpen,
   toggleBasket,
 }: ShoppingBasketProps) {
-  const { basket, basketItems } = useContext(BasketContext);
+  const { basket, basketItems, totalPrice } = useContext(BasketContext);
 
   return (
     <>
@@ -37,7 +38,7 @@ export default function ShoppingBasket({
         </ShoppingList>
         <BasketFooter>
           <p>Total items: {basketItems}</p>
-          <p>Total price: 0</p>
+          <p>Total price: {formattedPrice(totalPrice)}</p>
         </BasketFooter>
       </BasketContainer>
     </>

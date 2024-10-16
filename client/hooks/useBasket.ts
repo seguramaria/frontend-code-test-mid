@@ -78,6 +78,18 @@ export const useBasket = () => {
     [basket]
   );
 
+  const totalPrice = useMemo(
+    () =>
+      basket
+        .reduce(
+          (total: number, product: Product) =>
+            total + (product.quantity || 0) * product.price,
+          0
+        )
+        .toFixed(),
+    [basket]
+  );
+
   return {
     basket,
     addToBasket,
@@ -85,5 +97,6 @@ export const useBasket = () => {
     increaseQuantity,
     decreaseQuantity,
     basketItems,
+    totalPrice,
   };
 };

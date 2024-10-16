@@ -5,17 +5,12 @@ import { useContext } from "react";
 import { BasketContext } from "@/pages/_app";
 import ProductInfo from "./components/ProductInfo/ProductInfo";
 import ProductAddToCart from "./components/ProductAddToCart/ProductAddToCart";
+import { formattedPrice } from "utils/formattedPrice";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { getProductQuantity, addToBasket } = useContext(BasketContext);
   if (!product) return null;
 
-  const formattedPrice = (priceInCents: number) => {
-    return (priceInCents / 100).toLocaleString("en-GB", {
-      style: "currency",
-      currency: "GBP",
-    });
-  };
   const productQuantity = getProductQuantity(product.id);
 
   return (
