@@ -55,20 +55,23 @@ export const useBasket = () => {
   const decreaseQuantity = (id: number) => {
     const updatedBasket = basket
       .map((item: Product) => {
-        if (item.id === id && item?.currentQuantity) {
-          return {
-            ...item,
-            currentQuantity: item?.currentQuantity - 1,
-          };
+        if (item.id === id) {
+          if (item.currentQuantity && item.currentQuantity > 0) {
+            return {
+              ...item,
+              currentQuantity: item.currentQuantity - 1,
+            };
+          }
         }
         return item;
       })
       .filter(
-        (item: Product) => item?.currentQuantity && item.currentQuantity > 0
+        (item: Product) => item.currentQuantity && item.currentQuantity > 0
       );
 
     setBasket(updatedBasket);
   };
+
   const basketItems = useMemo(
     () =>
       basket.reduce(
