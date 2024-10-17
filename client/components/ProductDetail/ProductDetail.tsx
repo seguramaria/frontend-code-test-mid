@@ -17,35 +17,47 @@ export default function ProductDetail({
   product: Product | null;
 }) {
   if (!product) return <p>Product not found</p>;
+  const {
+    img_url,
+    name,
+    power,
+    quantity,
+    description,
+    brand,
+    weight,
+    height,
+    width,
+    length,
+    model_code,
+    colour,
+  } = product;
+
   return (
     <PageContainer>
       <SectionPrimary>
-        <ProductImage
-          productImgUrl={product.img_url}
-          productName={product.name}
-        />
+        <ProductImage productImgUrl={img_url} productName={name} />
         <div>
           <ProductInfo
-            productName={product.name}
-            productPower={product.power}
-            productQuantity={product.quantity}
+            productName={name}
+            productPower={power}
+            productQuantity={quantity}
           />
           <ProductAddToCart product={product} />
         </div>
       </SectionPrimary>
       <>
         <SectionSecondary>
-          <ProductDescription productDescription={product.description} />
+          <ProductDescription productDescription={description} />
         </SectionSecondary>
         <SectionTerciary>
           <ProductSpecifications
-            productBrand={product.brand}
-            productWeight={product.weight}
-            productHeight={product.height}
-            productWidth={product.width}
-            productLength={product.length}
-            productModelCode={product.model_code}
-            productColour={product.colour}
+            productBrand={brand}
+            productWeight={weight}
+            productHeight={height}
+            productWidth={width}
+            productLength={length}
+            productModelCode={model_code}
+            productColour={colour}
           />
         </SectionTerciary>
       </>

@@ -12,19 +12,17 @@ export default function ProductCard({ product }: { product: Product }) {
   if (!product) return null;
 
   const productQuantity = getProductQuantity(product.id);
+  const { name, power, quantity, price } = product;
 
   return (
     <Link href={`/product/${product.id}`} passHref>
       <Card>
-        <ProductImage
-          src="https://i.ibb.co/2nzwxnQ/bulb.png"
-          alt={product.name}
-        />
+        <ProductImage src="https://i.ibb.co/2nzwxnQ/bulb.png" alt={name} />
         <ProductInfo
-          productName={product.name}
-          productPower={product.power}
-          productQuantity={product.quantity}
-          productPrice={formattedPrice(product.price)}
+          productName={name}
+          productPower={power}
+          productQuantity={quantity}
+          productPrice={formattedPrice(price)}
         />
         {productQuantity ? (
           <ProductAddToCart
