@@ -20,7 +20,7 @@ export default function Header() {
           <Logo src="/octopus-logo.svg" alt="Logo" />
         </Link>
         <BasketIconButton onClick={toggleBasket}>
-          <BasketIcon src="/basket.svg" />
+          <BasketIcon src="/basket.svg" alt="Go to the shopping basket" />
         </BasketIconButton>
         <ShoppingBasket isOpen={isBasketOpen} toggleBasket={toggleBasket} />
       </PageHeader>

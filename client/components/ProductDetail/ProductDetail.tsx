@@ -20,7 +20,10 @@ export default function ProductDetail({
   return (
     <PageContainer>
       <SectionPrimary>
-        <ProductImage productImgUrl={product.img_url} />
+        <ProductImage
+          productImgUrl={product.img_url}
+          productName={product.name}
+        />
         <div>
           <ProductInfo
             productName={product.name}

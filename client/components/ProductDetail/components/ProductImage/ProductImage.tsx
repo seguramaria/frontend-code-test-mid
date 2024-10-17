@@ -1,13 +1,13 @@
 import { ImageContainer } from "./ProductImage.styles";
 
-export default function ProductImage({
-  productImgUrl,
-}: {
+type Props = {
   productImgUrl: string;
-}) {
+  productName: string;
+};
+export default function ProductImage({ productImgUrl, productName }: Props) {
   return (
     <ImageContainer>
-      <img src={productImgUrl} />
+      <img src={productImgUrl} alt={`${productName} image`} />
     </ImageContainer>
   );
 }
