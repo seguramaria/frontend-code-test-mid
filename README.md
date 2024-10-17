@@ -1,70 +1,71 @@
 <img src="https://static.octopuscdn.com/constantine/constantine.svg" alt="Octopus Energy mascot, Constantine" width="100" />
 
-# Octopus Frontend code test
+# Octopus Frontend Code Test
 
-In this code test, you'll be asked to:
+In this test, I was asked to:
 
-- Make a simple React app that follows the design in `design.jpg`, consumes the API and makes the front end tests pass. Ideally the app should be responsive.
+- Make a simple React app that follows the design in `design.jpg`
+- Consume the API
+- Ensure the front-end tests pass
+- Make the app responsive
 
-We've included:
+### Task Requirements
 
-- A sample [Next.js](https://nextjs.org/) project for your convenience, but you're welcome to swap it out for another framework if you prefer
-- Some CSS colour variables that match the colours in the design
-- The assets that you will need to complete the design
+The task is to build an app that passes the following tests:
+- Should be able to increase and decrease product quantity ✅
+- Should be able to add items to the basket ✅
 
-You're also welcome to write more tests for other parts of the application - but design those however you like.
+### Additional Features
 
-## Getting started
+The initial task was only to create a product detail, but I also added:
+- A homepage with product cards 💡 where users can add or remove products from the basket.  (I've added some fake products 😅 to the db.js to show you the cards and how to navigate to the products using their IDs)
+  - The logic for adding/removing products in the homepage cards differs from the product detail. While this might not be ideal for UX/UI consistency, I wanted to show different ways to handle cart interactions.
+- A shoping basket 🧺 component that displays product cards, calculates the total number of items, and computes the total price.
+- I also added a popover when the user updates/adds products to let them know the current basket items.
+      ![Popover](https://github.com/user-attachments/assets/5c2edc06-20f3-485f-affc-dfc4ffbf5d8c)
 
-First you'll need to install your dependencies. We've used yarn, if you have another preference feel free to remove the lock file and use what you are comfortable with:
 
-```sh
-cd client && yarn
-```
 
-## Start the app
+### Steps Taken
 
-```sh
-yarn dev
-```
+1. **Styled Components**: I used Styled Components for styling. I saw that Octopus Energy uses Styled Components in their public conventions, so I took this opportunity to learn and apply them 🙃🕵️‍♀️ (I had previously worked with JSS and Emotion).
+   
+2. **Design**: 
+   - I created a theme with the colors and properties needed for easy access.
+   - The design from the test was for mobile, so I adapted it for larger screens.
+     
+        ![responsive](https://github.com/user-attachments/assets/6d978fb4-a3a9-497d-b5f4-ffca0adaea29)
 
-This will do two things:
+   - I examined the Octopus Energy website for color and style guidance. For example, I noticed the borders used in the cards and applied similar styling to my product cards.
+     
+        ![borders](https://github.com/user-attachments/assets/36531018-bcf4-40b9-befc-ceec0c192b84)
 
-- Start a Next.js app running in development on <http://localhost:3000>
-- Start a graphQL stub server running on <http://localhost:3001/graphql>
 
-## Running tests
+3. **Apollo**: I had never used Apollo before, but the documentation helped me a lot. I used Apollo GraphQL to manage data fetching.
 
-You can run tests from the client directory.
+4. **Server-Side Rendering**: 
+   - To maintain good SEO, I used `getServerSideProps` to ensure the product is fetched server-side. This improves indexation for search engines and enhances online visibility.
+   - For title and meta tags, I aligned the descriptions with Octopus conventions. 🐙
 
-```sh
-cd client && yarn test
-```
+5. **LocalStorage**: I used `localStorage` to persist the cart data across page refreshes.
 
-This should give you two failures:
+### Code Optimization
 
-```sh
-FAIL test/product.test.js
-    ✕ should be able to increase and decrease product quantity
-    ✕ should be able to add items to the basket
-```
+To follow the DRY 😉 (Don't Repeat Yourself) principle, I made several optimizations:
 
-The task is to build the app that passes these tests.
+- **Mixins**: I created style mixins for repeated styles.
+- **useBasket**: I created a custom hook for basket calculations. To manage the global state, I used React's Context API. I wrapped the app in a context provider to share necessary values across components.
+- **Utils**: 
+  - I created a `formattedPrice` utility function to handle price formatting across the app. 💸🪙
+  - I also created a utility for custom rendering in the tests. Since my app was more complex than initially proposed, I modified the test to use a custom render method that wraps the product component with its necessary providers.
 
-## What we're looking for
+### Accessibility
 
-We would like you to demonstrate your ability to:
+I followed accessibility best practices in my design and implementation. I used the Chrome tool Lighthouse to audit the accessibility. 
+    ![lichthouse](https://github.com/user-attachments/assets/acc1be7f-780a-45b1-a2b3-a0cc84933e1c)
 
-- Reason through a programming problem
-- Implement a visual design
-- Implement some user interactions
-- Write code that is easy to understand and extend
-- Write tests that document and safeguard the program's behaviour
-- Use a version control system (e.g. git) to effectively convey intent
+### Comments
 
-Notes:
+I had a great time doing this task, I learned new things, and it was fun. 😊✨ Thank you very much, and I hope you like it.
 
-- This has not been set up with Typescript, but if that is something you would like to add, you can follow the [Next.js docs on how to set this up](https://nextjs.org/docs/basic-features/typescript#existing-projects), and add typings to components if you would like.
-- This has not been set up with any type of CSS-in-JS, but if that is something you would like to add, please feel free.
-
-Best of luck!
+  
